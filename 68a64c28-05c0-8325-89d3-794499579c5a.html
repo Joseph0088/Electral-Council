@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electral Council Voter Management</title>
+<link href="https://elitelearnersacademy.com/CSS/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <h2 class="mb-3">Dynamic Members / Voters Table</h2>
+
+    <div class="mb-3">
+        <input type="text" id="searchInput" class="form-control" placeholder="Search by Firstname, Surname, or City">
+    </div>
+    
+    <!-- Table Selection -->
+    <div class="mb-3">
+        <label for="tableSelect" class="form-label">Select Table:</label>
+        <select id="tableSelect" class="form-select w-auto">
+            <option value="zsmMEMBERS">Members</option>
+            <option value="registeredVOTERS">Registered Voters</option>
+        </select>
+    </div>
+
+    <!-- Sorting Options -->
+   <div class="mb-3 d-flex gap-2">
+    <select id="sortSelect" class="form-select w-auto">
+        <option value="">Sort by...</option>
+        <option value="City">City</option>
+        <option value="EDU_Status">EDU_Status</option>
+    </select>
+</div>
+
+
+    <!-- Dynamic Table -->
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th><input type="checkbox" id="selectAll"></th>
+                <th>zsmID</th>
+                <th>Firstname</th>
+                <th>Surname</th>
+                <th>Membership</th>
+                <th>City</th>
+                <th>EDU_Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="dynamicTableBody"></tbody>
+    </table>
+
+    <!-- Bulk Action -->
+    <div class="mb-3">
+        <button class="btn btn-success" id="bulkEligible">Mark Selected as Eligible</button>
+        <button class="btn btn-danger" id="bulkIneligible">Mark Selected as Ineligible</button>
+        <button class="btn btn-info" id="bulkVerify">Verify Selected</button>
+
+    </div>
+</div>
+
+<script src="k8n2b4q7p1x5r9s3z6d0c1v2l.js"></script>
+<script src="https://elitelearnersacademy.com/JS/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+CREATE DATABASE IF NOT EXISTS ElectralCouncilzasam;
+USE ElectralCouncilzasam;
+
+CREATE TABLE IF NOT EXISTS Admins (
+    adminID INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('super', 'admin') DEFAULT 'admin',
+    status ENUM('pending', 'active', 'rejected') DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Members table
+CREATE TABLE zsmMEMBERS (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    zsmID VARCHAR(10) UNIQUE NOT NULL,
+    Firstname VARCHAR(255) NOT NULL,
+    Surname VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) NOT NULL,
+    Membership ENUM('Active', 'None') NOT NULL,
+    City VARCHAR(255) NOT NULL,
+    EDU_Status ENUM('Student','Graduating','Graduate') NOT NULL
+);
+
+-- Registered voters (no FK link, raw registration data)
+CREATE TABLE registeredVOTERS (
+    voterID INT AUTO_INCREMENT PRIMARY KEY,
+    RegistrationDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    Firstname VARCHAR(255) NOT NULL,
+    Surname VARCHAR(255) NOT NULL,
+    Email VARCHAR(255),
+    City VARCHAR(255) NOT NULL,
+    VoterNumber VARCHAR(255) NOT NULL,
+    AcademicYear VARCHAR(255) NOT NULL
+);
+
+-- Voter status (eligible or ineligible)
+CREATE TABLE voterSTATUS (
+    vsID INT AUTO_INCREMENT PRIMARY KEY,
+    voterID INT NOT NULL,
+    Status ENUM('Eligible', 'Ineligible') NOT NULL,
+    Reason VARCHAR(255) DEFAULT NULL
+);
+
+
+CREATE TABLE IF NOT EXISTS AuditLogs (
+    auditID INT AUTO_INCREMENT PRIMARY KEY,
+    adminID INT NOT NULL,
+    action VARCHAR(255) NOT NULL,
+    targetTable VARCHAR(50),
+    targetID INT,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ipAddress VARCHAR(45),
+    FOREIGN KEY (adminID) REFERENCES Admins(adminID) ON DELETE CASCADE
+);
+
+CREATE TABLE admins (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('super', 'admin') DEFAULT 'admin',
+    status ENUM('pending', 'active', 'rejected') DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+/*
+ frontend
+ Inserting Voters Page
+ Verification page
+
+ */   
+
+/*so we need to have
+   1. lets include the following  features to platform
+   2. Have a Dynamic Displayment Table for all members IDs  and other Attributes  without showing contact inform or (te**jo**@gmail.com)
+   3. Attributes as follows Table (zsmID, Firstname, Surname, Membership,City ,EDU_Status)
+   4. Sort option button selection button , members to be sorted based on their city or AC
+   5. The Dynamic table must have select button to allow admin to change the content of the table(zsmMembers, RegisteredVoters)
+   6. EligibleVoters,ineligibleVoters table , logic using natural join (tables attribues (zsmID, Firstname, Surname, Membership,City , EDU_Status,Status,
+    Reason)
+)
+    
+*/
