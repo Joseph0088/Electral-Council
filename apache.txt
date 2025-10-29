@@ -1,0 +1,6 @@
+# Start Apache server
+sudo systemctl start apache2
+
+# To ensure Apache starts automatically on boot
+sudo systemctl enable apache2
+
