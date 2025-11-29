@@ -10,7 +10,7 @@ try {
     // adjust DB name/user/pass as needed
     $dsn  = 'mysql:host=localhost;dbname=ElectralCouncilzasam;charset=utf8mb4';
     $user = 'root';
-    $pass = 'mary1234....J2002t11';
+    $pass = 'xxx';
 
     $conn = new PDO($dsn, $user, $pass, [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
